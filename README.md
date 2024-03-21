@@ -7,7 +7,12 @@
 <br />
 <br />
 
-[프로젝트 환경 세팅](#프로젝트-환경-구성)
+[프로젝트 환경 세팅](#프로젝트-환경-구성) <br />
+[Json-Server](#json-server) <br />
+
+<br />
+<br />
+<br />
 
 # 프로젝트 환경 구성
 
@@ -180,7 +185,7 @@
       "src",
       "tsconfig.paths.json"
     ]
-   ```s
+   ```
    `package.json` 파일에서 `scripts` 부분을 CRACO를 사용하도록 수정
    ```json
    "scripts": {
@@ -200,3 +205,48 @@
     ```terminal
     yarn add classnames sass
     ```
+
+<br />
+<br />
+<br />
+
+# Json-Server
+
+[json server Github 페이지](https://github.com/typicode/json-server)
+
+> 설치
+
+```teminal
+yarn add -D json-server
+```
+<br />
+
+> db.json 파일 생성 (예시)
+```json
+{
+  "posts": [    { "id": "1", "title": "a title", "views": 100 },
+    { "id": "2", "title": "another title", "views": 200 }
+  ],
+  "comments": [
+    { "id": "1", "text": "a comment about post 1", "postId": "1" },
+    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
+```
+<br />
+
+> scripts에 단축키 생성
+```json
+/package.json
+
+"scripts": {
+  "start": "react-scripts start",
+  
+  ...
+
+  "dev:db": "json-server --watch db.json --port=8888"
+},
+```
