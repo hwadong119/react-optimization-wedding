@@ -9,6 +9,7 @@
 
 [프로젝트 환경 세팅](#프로젝트-환경-구성) <br />
 [Json-Server](#json-server) <br />
+[Font](#font) <br />
 
 <br />
 <br />
@@ -249,4 +250,34 @@ yarn add -D json-server
 
   "dev:db": "json-server --watch db.json --port=8888"
 },
+```
+
+<br />
+<br />
+<br />
+
+# Font 
+
+`src\assets\fonts`  폴더를 생성하고, 다운로드 받은 폰트 파일을 해당 폴더에 저장
+
+src 폴더에 폰트 파일을 넣는 이유 - src 폴더 내에 저장하면 번들링에 포함되며, 이를 통해 최적화 효과를 얻을 수 있다.
+
+`src\scss\font.scss`
+```scss
+@font-face {
+  font-family: "NanumMyeongjoYetHangul";
+  src: 
+    url("../assets/fonts/NanumMyeongjo-YetHangul.woff2") format("woff2"),
+    url("../assets/fonts/NanumMyeongjo-YetHangul.woff") format("woff"),
+    url("../assets/fonts/NanumMyeongjo-YetHangul.ttf") format("truetype");
+}
+```
+
+`src\scss\global.scss`
+```scss
+@import url("./font.scss");
+
+body {
+  font-family: "NanumMyeongjoYetHangul";
+}
 ```
