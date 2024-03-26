@@ -1,0 +1,53 @@
+
+// 화면 전체에 고정되어 중앙에 컨텐츠를 배치하는 스타일을 정의
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center; // 가로 축 중앙 정렬
+  align-items: center; // 세로 축 중앙 정렬
+
+  flex-direction: column; // 아이템을 세로로 나열
+}
+
+.ico-heart {
+  fill: var(--red);
+  width: 60px;
+  height: 60px;
+
+  animation: heart 1.2s infinite linear; // heart 키 프레임 애니메이션 적용, 1.2초 동안 무한 반복
+}
+
+.ico-error {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+@keyframes heart {
+  0% {
+    transform: scale(0.95);
+  }
+  15% {
+    transform: scale(1.1);
+  }
+  30% {
+    transform: scale(0.85);
+  }
+  45% {
+    transform: scale(1.1);
+  }
+  60% {
+    transform: scale(0.85);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.95);
+  }
+}
