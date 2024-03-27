@@ -10,6 +10,7 @@
 [프로젝트 환경 세팅](#프로젝트-환경-구성) <br />
 [Json-Server](#json-server) <br />
 [Font](#font) <br />
+[date-fns](#date-fns) <br />
 
 <br />
 <br />
@@ -281,3 +282,50 @@ body {
   font-family: "NanumMyeongjoYetHangul";
 }
 ```
+
+<br />
+<br />
+<br />
+
+# date-fns
+
+`date-fns`는 JavaScript에서 날짜를 처리하기 위한 경량 라이브러리.
+
+Moment.js와 같은 다른 날짜 처리 라이브러리에 비해 더 작은 번들 사이즈를 가지며, 함수형 프로그래밍 패러다임을 따른다. 
+
+### 설치
+
+```bash
+yarn add date-fns
+```
+
+설치 후, 필요한 함수를 임포트하여 사용
+
+```javascript
+import { format, compareAsc } from 'date-fns';
+
+// 오늘 날짜를 "yyyy-MM-dd" 포맷으로 출력
+console.log(format(new Date(), 'yyyy-MM-dd'));
+
+// 두 날짜를 비교
+const dates = [
+  new Date(1989, 6, 10),
+  new Date(1987, 1, 11)
+];
+dates.sort(compareAsc);
+console.log(dates);
+```
+
+### 예시: 날짜 차이 계산
+
+```javascript
+import { differenceInDays } from 'date-fns';
+
+const start = new Date(2020, 8, 1); // 2020년 9월 1일
+const end = new Date(2020, 8, 10); // 2020년 9월 10일
+
+// 두 날짜의 차이를 일 단위로 계산
+console.log(differenceInDays(end, start)); // 출력: 9
+```
+
+[date-fns 공식 문서](https://date-fns.org/)

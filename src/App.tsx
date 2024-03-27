@@ -1,16 +1,21 @@
-import classNames from 'classnames/bind' 
+import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
 import styles from './App.module.scss'
-import FullScreenMessage from './components/shared/FullScreenMessage'
+import FullScreenMessage from '@shared/FullScreenMessage'
+
+import Heading from './components/shared/sections/Heading'
+import Video from './components/shared/sections/Video'
+
+import { Wedding } from '@models/wedding'
 
 // styles 객체를 사용하여 클래스 이름을 동적으로 결합합니다.
 const cx = classNames.bind(styles)
 
 function App() {
   // wedding 데이터 상태, 로딩 상태, 에러 상태를 관리하는 상태 변수 선언합니다.
-  const [wedding, setWedding] = useState(null) // wedding 데이터 상태
+  const [wedding, setWedding] = useState<Wedding | null>(null) // wedding 데이터 상태
   const [loading, setLoading] = useState(false) // 로딩 상태
-  const [error, setError] = useState(false) // 에러 상태 
+  const [error, setError] = useState(false) // 에러 상태
 
   // 컴포넌트 마운트 시 청첩장 데이터를 불러옵니다.
   useEffect(() => {
@@ -46,8 +51,20 @@ function App() {
     return <FullScreenMessage type="error" />
   }
 
+  // wedding 데이터가 아직 존재하지 않거나 로드되지 않았을 때 컴포넌트의 렌더링을 멈춤
+  if (wedding === null) return null
+
+  const { date } = wedding
+
   // 로딩도, 에러도 아닌 모든 상태가 정상인 경우, wedding 데이터를 화면에 표시
-  return <div className={cx('container')}>{JSON.stringify(wedding)}</div>
+  return (
+    <div className={cx('container')}>
+      {/* Heading 컴포넌트에 날짜 정보를 전달 */}
+      <Heading date={date} />
+      <Video />
+      {JSON.stringify(wedding)}
+    </div>
+  )
 }
 
 export default App
